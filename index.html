@@ -330,20 +330,20 @@
         }
 
         function renderHeroSection() {
-            const featuredProperties = properties.filter(p => p.featured); // Get all featured properties
-            const heroSection = document.getElementById("hero-section");
+    const featuredProperties = properties.filter(p => p.featured); // Get all featured properties
+    const heroSection = document.getElementById("hero-section");
 
-            if (featuredProperties.length === 0) {
-                heroSection.innerHTML = `
+    if (featuredProperties.length === 0) {
+        heroSection.innerHTML = `
             <div class="w-full h-full bg-gray-800 flex items-center justify-center text-white">
                 <h2 class="text-3xl">لا توجد عقارات مميزة حالياً</h2>
             </div>
         `;
-                return;
-            }
+        return;
+    }
 
-            // Generate slides dynamically
-            heroSection.innerHTML = `
+    // Generate slides dynamically
+    heroSection.innerHTML = `
         <div class="slider relative w-full h-full">
             ${featuredProperties.map((p, index) => `
                 <div class="slide absolute inset-0 transition-opacity duration-700 ease-in-out ${index === 0 ? "opacity-100" : "opacity-0"}">
@@ -352,10 +352,6 @@
                         <div class="text-center text-white p-4 max-w-2xl fade-in">
                             <h2 class="text-3xl md:text-5xl font-bold mb-4">${p.title}</h2>
                             <p class="text-lg mb-6">${p.address}</p>
-                            <button onclick="showPropertyDetails(${p.id})" 
-                                class="bg-teal-600 text-white px-8 py-3 rounded-lg text-lg hover:bg-teal-700 transition duration-300">
-                                عرض التفاصيل
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -363,25 +359,24 @@
         </div>
     `;
 
-            // Slider logic
-            let slides = heroSection.querySelectorAll('.slide');
-            let current = 0;
+    // Slider logic
+    let slides = heroSection.querySelectorAll('.slide');
+    let current = 0;
 
-            function showSlide(index) {
-                slides.forEach((slide, i) => {
-                    slide.style.opacity = i === index ? '1' : '0';
-                });
-            }
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.style.opacity = i === index ? '1' : '0';
+        });
+    }
 
-            function nextSlide() {
-                current = (current + 1) % slides.length;
-                showSlide(current);
-            }
+    function nextSlide() {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+    }
 
-            // Auto change every 5 seconds
-            setInterval(nextSlide, 5000);
-        }
-
+    // Auto change every 5 seconds
+    setInterval(nextSlide, 5000);
+}
 
 
         function renderFeaturedListings() {
